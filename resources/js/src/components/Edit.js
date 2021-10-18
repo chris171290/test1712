@@ -57,8 +57,8 @@ const Edit = () => {
                     <input
                         type="checkbox"
                         className="form-check-input"
-                        defaultChecked={completed}
-                        value={completed} onChange={e => setCompleted(e.target.checked)} />
+                        defaultChecked={completed ? "true" : "false"}
+                        onChange={e => setCompleted(e.target.checked)} />
                     <label className="form-check-label">Tarea completada</label>
                 </div>
 

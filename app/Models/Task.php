@@ -22,6 +22,7 @@ class Task extends Model
 
     static function searchIndex(array $parameters = [])
     {
+//        dd($parameters);
         $query = DB::table('_tasks', 'sf');
         $query->where('sf.deleted_at', '=',null);
         if (!empty($parameters["id"])) {
@@ -30,9 +31,8 @@ class Task extends Model
         if (!empty($parameters["name"])) {
             $query->where('sf.name', 'like', '%' . $parameters["name"] . '%');
         }
-        if (!empty($parameters["completed"])) {
-            $query->where('sf.completed', '=',$parameters["completed"]);
-
+        if ($parameters["completed"] === 'true') {
+            $query->where('sf.completed', '=',1);
         }
 
         $query->selectRaw('sf.id, sf.name, sf.description, sf.completed');

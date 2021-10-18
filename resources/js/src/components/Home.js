@@ -7,7 +7,7 @@ const Home = () => {
 
     const [tasks,setTask] = useState(null)
     const [name,setName] = useState('')
-    const [completed,setCompleted] = useState('')
+    const [completed,setCompleted] = useState(false)
 
     const fetchTasks = () => {
         api.getAllTask({
@@ -17,7 +17,7 @@ const Home = () => {
             setTask(result.data)
         });
     }
-    
+
     useEffect(() => {
         fetchTasks();
     },[])
@@ -91,7 +91,7 @@ const Home = () => {
                 </div>
 
                 <div className='form-check'>
-                    <input type="checkbox" className="form-check-input" value={completed} onChange={e => setCompleted(e.target.checked)} />
+                    <input type="checkbox" className="form-check-input" value={completed ? "true" : "false"} onChange={e => setCompleted(e.target.checked)} />
                     <label className="form-check-label">Tarea completadas</label>
                 </div>
 

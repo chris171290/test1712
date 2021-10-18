@@ -2203,7 +2203,12 @@ var BASE_API_URL = 'http://127.0.0.1:8000/api';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getAllTask: function getAllTask(task) {
     return (// console.log(task),
-      axios.get("".concat(BASE_API_URL, "/tasks"), task)
+      axios.get("".concat(BASE_API_URL, "/tasks"), {
+        params: {
+          name: task.name,
+          completed: task.completed
+        }
+      })
     );
   },
   getOneTask: function getOneTask(id) {
@@ -2588,8 +2593,7 @@ var Edit = function Edit() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
           type: "checkbox",
           className: "form-check-input",
-          defaultChecked: completed,
-          value: completed,
+          defaultChecked: completed ? "true" : "false",
           onChange: function onChange(e) {
             return setCompleted(e.target.checked);
           }
@@ -2661,7 +2665,7 @@ var Home = function Home() {
       name = _useState4[0],
       setName = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       completed = _useState6[0],
       setCompleted = _useState6[1];
@@ -2757,7 +2761,7 @@ var Home = function Home() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
           type: "checkbox",
           className: "form-check-input",
-          value: completed,
+          value: completed ? "true" : "false",
           onChange: function onChange(e) {
             return setCompleted(e.target.checked);
           }
